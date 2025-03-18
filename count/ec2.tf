@@ -30,7 +30,17 @@ resource "aws_instance" "devops-terra" {
   vpc_security_group_ids = [aws_security_group.allow_all4.id]
   
 
-  tags = {
-    Name = var.instas[count.index]
-  }
+  # tags = {
+  #   Name = var.instas[count.index]
+  # }
+  tags = merge(
+    var.common_tags,
+    {
+      Name = var.instas[count.index]
+    }
+  )
 }
+ output "instance_piblic_ip" {
+  value = aws_instance.devops-terra.public_ip
+   
+ }

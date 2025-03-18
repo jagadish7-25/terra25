@@ -17,6 +17,15 @@ variable "instas" {
   default = ["mysql", "backend", "frontend"]
   
 }
+variable "common_tags" {
+  type = map 
+  default = {
+    Project = "Expense"
+    Environmet = "Dev"
+    terraform = true
+  }
+  
+}
 
 variable "sg_name" {
     default= "allow_all4"
