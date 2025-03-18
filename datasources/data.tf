@@ -1,4 +1,4 @@
-data "aws_ami" "today" {
+data "aws_ami" "today_ami" {
   most_recent = true
   owners = ["992382427676"] 
   filter {
@@ -12,7 +12,7 @@ data "aws_ami" "today" {
 }
 
 output "today_ami" {
-    value = data.aws_ami.today.id
+    value = data.aws_ami.today_ami.image_id
   
 }
 
