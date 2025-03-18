@@ -24,7 +24,7 @@ resource "aws_security_group" "allow_all4" {
 }
 
 resource "aws_instance" "devops-terra" {
-  count = 3
+  count = length(var.instas)
   ami           = var.ami_id
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow_all4.id]
