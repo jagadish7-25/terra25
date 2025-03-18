@@ -30,6 +30,6 @@ resource "aws_instance" "devops-terra" {
   
 
   tags = {
-    Name = "var.tags"
+    Name = var.instances[count.index]
   }
 }

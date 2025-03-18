@@ -12,14 +12,9 @@ variable "inst_type" {
 }
 
 
-variable "tags" {
-    type = map 
-    default = {
-        Name ="Backend"
-        Project = "Expense"
-        Component = "Backend"
-        Environmet = "Dev" 
-    }
+variable "instances" {
+  type = list(string)
+  default = [ "mysql","backend","frontend" ]
   
 }
 
