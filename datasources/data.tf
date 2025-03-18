@@ -5,6 +5,10 @@ data "aws_ami" "today_ami" {
     name   = "name"
     values = ["RHEL-9-DevOps-Practice"]
   }
+   filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
 
   
  
