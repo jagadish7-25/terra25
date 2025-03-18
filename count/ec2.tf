@@ -23,7 +23,7 @@ resource "aws_security_group" "allow_all4" {
   }
 }
 
-resource "aws_instance" "devops-terra" {
+resource "aws_instance" "expense" {
   count = length(var.instas)
   ami           = var.ami_id
   instance_type = "t2.micro"
@@ -40,7 +40,7 @@ resource "aws_instance" "devops-terra" {
     }
   )
 }
- output "instance_piblic_ip" {
-  value = aws_instance.devops-terra[*].public_ip
+ output "insta_prip" {
+  value = aws_instance.expense[*].private_ip
    
  }

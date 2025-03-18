@@ -45,3 +45,12 @@ variable "Environmet" {
   default = "dev"
   
 }
+
+variable "host_zone" {
+  type = string
+  default = "Z0399604BUWMX5L1H6Z0"
+}
+variable "domain_name" {
+  default = "chocojohns.online"
+  
+}
