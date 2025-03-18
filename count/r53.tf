@@ -1,5 +1,5 @@
 resource "aws_route53_record" "expense" {
-  count = lenght(var.instas)
+  count = length(var.instas)
   zone_id = var.host_zone
   name    = "${var.instas[count.index]}.${var.domain_name}"
   type    = "A"
