@@ -1,6 +1,6 @@
 data "aws_ami" "today_ami" {
   most_recent = true
-  owners = ["992382427676"] 
+  owners = ["973714476881"] 
   filter {
     name   = "name"
     values = ["RHEL-9-DevOps-Practice"]
