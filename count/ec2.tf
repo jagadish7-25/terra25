@@ -41,6 +41,6 @@ resource "aws_instance" "devops-terra" {
   )
 }
  output "instance_piblic_ip" {
-  value = aws_instance.devops-terra.public_ip
+  value = aws_instance.devops-terra[*].public_ip
    
  }
