@@ -12,9 +12,9 @@ variable "inst_type" {
 }
 
 
-variable "instances" {
+variable "instas" {
   type = list(String)
-  default = ["mysql","backend","frontend"]
+  default = ["mysql", "backend", "frontend"]
   
 }
 
