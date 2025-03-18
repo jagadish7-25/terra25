@@ -4,7 +4,7 @@ resource "aws_security_group" "allow_all4" {
   
 
   tags = {
-    Name = "allow_all4"
+    Name = var.sg_name
   }
   egress {
     from_port        = 0
@@ -15,21 +15,21 @@ resource "aws_security_group" "allow_all4" {
   }
 
   ingress {
-    from_port        = 22
-    to_port          = 22
+    from_port        = var.from_port
+    to_port          = var.to_port
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.ing_cidr
     ipv6_cidr_blocks = ["::/0"]
   }
 }
 
 resource "aws_instance" "devops-terra" {
-  ami           = "ami-09c813fb71547fc4f" 
-  instance_type = "t3.micro"
+  ami           = var.ami_id
+  instance_type = var.inst_type
   vpc_security_group_ids = [aws_security_group.allow_all4.id]
   
 
   tags = {
-    Name = "devops-terra"
+    Name = "var.tags"
   }
 }
