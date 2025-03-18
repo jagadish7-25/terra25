@@ -12,9 +12,9 @@ variable "inst_type" {
 }
 
 
-variable "tags" {
-  type = string
-  default = "backend"
+variable "instances" {
+  type = list(String)
+  default = ["mysql","backend","frontend"]
   
 }
 
