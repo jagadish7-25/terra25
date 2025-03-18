@@ -13,7 +13,7 @@ variable "inst_type" {
 
 
 variable "instas" {
-  type = list(String)
+  type = list
   default = ["mysql", "backend", "frontend"]
   
 }
