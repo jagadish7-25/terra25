@@ -21,6 +21,16 @@ resource "aws_security_group" "allow_all4" {
     cidr_blocks      = var.ing_cidr
     ipv6_cidr_blocks = ["::/0"]
   }
+
+
+  
+  ingress {
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = var.ing_cidr
+    ipv6_cidr_blocks = ["::/0"]
+  }
 }
 
 resource "aws_instance" "devops-terra" {
@@ -34,6 +44,22 @@ resource "aws_instance" "devops-terra" {
   }
   provisioner "local-exec" {
     command = "echo ${self.public_ip} > public_ip.txt"
+  }
+
+    connection {
+    type        = "ssh"
+    user        = "ec2-user"               # Change for Ubuntu (`ubuntu`)
+    private_key = "DevOps321"
+    host        = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum update -y",
+      "sudo yum install -y nginx",
+      "sudo systemctl start nginx",
+      "sudo systemctl enable nginx"
+    ]
   }
   
 }
