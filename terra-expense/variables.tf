@@ -32,3 +32,11 @@ variable "ing_cidr" {
   type = list(string)
   default = ["0.0.0.0/0"]
 }
+variable "host_zone" {
+  type = string
+  default = "Z0399604BUWMX5L1H6Z0"
+}
+variable "domain_name" {
+  default = "chocojohns.online"
+  
+}

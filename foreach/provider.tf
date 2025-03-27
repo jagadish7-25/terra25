@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "kadapadev-25"
-    key    = "remote-state-kadapa"
+    key    = "for-each-kadapa"
     region = "us-east-1"
     dynamodb_table = "kadapadev-25-terra"
   }
