@@ -49,7 +49,7 @@ resource "aws_instance" "devops-terra" {
     connection {
     type        = "ssh"
     user        = "ec2-user"               # Change for Ubuntu (`ubuntu`)
-    private_key = "DevOps321"
+    password = "DevOps321"
     host        = self.public_ip
   }
 
