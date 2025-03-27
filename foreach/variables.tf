@@ -11,21 +11,19 @@ variable "inst_type" {
       backend = t2.micro
       frontend = t2.micro
     }
-    description = "this is the free source instance we used for terraform"
-  
 }
 
 
-variable "tags" {
-    type = map 
-    default = {
-        Name ="Backend"
-        Project = "Expense"
-        Component = "Backend"
-        Environmet = "Dev" 
-    }
+# variable "tags" {
+#     type = map 
+#     default = {
+#         Name ="Backend"
+#         Project = "Expense"
+#         Component = "Backend"
+#         Environmet = "Dev" 
+#     }
   
-}
+# }
 
 variable "sg_name" {
     default= "allow_all4"
