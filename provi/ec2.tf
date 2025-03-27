@@ -32,7 +32,7 @@ resource "aws_instance" "devops-terra" {
   tags = {
     Name = "var.tags"
   }
-  provisioner "local-execc" {
+  provisioner "local-exec" {
     command = "echo ${self.public_ip} > public_ip.txt"
   }
   
