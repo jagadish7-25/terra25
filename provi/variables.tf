@@ -6,7 +6,7 @@ variable "ami_id" {
 }
 variable "inst_type" {
     type = string
-    default = "t2.nano"
+    default = "t2.micro"
     description = "this is the free source instance we used for terraform"
   
 }
