@@ -7,9 +7,9 @@ variable "ami_id" {
 variable "inst_type" {
     type = map 
     default = {
-      mysql = t2.micro
-      backend = t2.micro
-      frontend = t2.micro
+      mysql = "t2.micro"
+      backend = "t2.micro"
+      frontend = "t2.micro"
     }
 }
 
