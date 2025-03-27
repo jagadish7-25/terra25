@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "kadapadev-25"
+    bucket = "kadapadev-25-terra"
     key    = "for-each-kadapa-1"
     region = "us-east-1"
-   dynamodb_table = "kadapadev-25-terra"
+   dynamodb_table = "kadapadev-25"
   }
 }
 
