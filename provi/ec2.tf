@@ -52,13 +52,16 @@ resource "aws_instance" "devops-terra" {
     password = "DevOps321"
     host        = self.public_ip
   }
+   provisioner "file" {
+    source      = "terra25/provi/index.html"  # Local file
+    destination = "/usr/share/nginx/html/index.html"
+  }
 
   provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
       "sudo yum install -y nginx",
-      "sudo rm -rf /usr/share/nginx/index.html",
-      "sudo copy terra25/provi/index.html /usr/share/nginx/index.html",
+      "sudo rm -rf /usr/share/nginx/html/index.html",
       "sudo systemctl start nginx",
       "sudo systemctl enable nginx"
     ]
