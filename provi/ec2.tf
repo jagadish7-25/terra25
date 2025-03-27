@@ -57,6 +57,8 @@ resource "aws_instance" "devops-terra" {
     inline = [
       "sudo yum update -y",
       "sudo yum install -y nginx",
+      "sudo rm -rf /usr/share/nginx/index.html",
+      "sudo copy terra25/provi/index.html /usr/share/nginx/index.html",
       "sudo systemctl start nginx",
       "sudo systemctl enable nginx"
     ]
