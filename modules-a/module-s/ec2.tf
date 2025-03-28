@@ -1,3 +1,3 @@
 module "ec2_demo" {
-  source = "../modules"
+  source = "../modules-a"
 }
