@@ -52,10 +52,7 @@ resource "aws_instance" "devops-terra" {
     password = "DevOps321"
     host        = self.public_ip
   }
-   provisioner "file" {
-    source      = "terra25/provi/index.html"  # Local file
-    destination = "/usr/share/nginx/html/index.html"
-  }
+ 
 
   provisioner "remote-exec" {
     inline = [
@@ -65,6 +62,10 @@ resource "aws_instance" "devops-terra" {
       "sudo systemctl start nginx",
       "sudo systemctl enable nginx"
     ]
+  }
+    provisioner "file" {
+    source      = "index.html"  # Local file
+    destination = "/usr/share/nginx/html/index.html"
   }
   
 }
