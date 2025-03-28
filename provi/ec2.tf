@@ -52,20 +52,21 @@ resource "aws_instance" "devops-terra" {
     password = "DevOps321"
     host        = self.public_ip
   }
+   provisioner "file" {
+    source      = "index.html"  # Local file
+    destination = "/tmp/index.html"
+  }
  
 
   provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
       "sudo yum install -y nginx",
-      "sudo rm -rf /usr/share/nginx/html/index.html",
+      "sudo mv /tmp/index.html /usr/share/nginx/html/index.html",
       "sudo systemctl start nginx",
       "sudo systemctl enable nginx"
     ]
   }
-    provisioner "file" {
-    source      = "index.html"  # Local file
-    destination = "/usr/share/nginx/html/index.html"
-  }
+   
   
 }
