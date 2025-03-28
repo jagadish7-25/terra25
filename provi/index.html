@@ -1,49 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        input {
-            padding: 5px;
-            margin: 10px;
-        }
-        button {
-            padding: 7px 15px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+    .game-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #333;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    .input-box {
+      padding: 10px;
+      width: 60%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+    }
+    .message {
+      color: #ff0000;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Guess the Number!</h1>
-    <p>Pick a number between 1 and 100:</p>
-    <input type="number" id="userGuess" min="1" max="100">
-    <button onclick="checkGuess()">Guess</button>
-    <p id="message"></p>
 
-    <script>
-        const randomNumber = Math.floor(Math.random() * 100) + 1;
-        let attempts = 0;
+<div class="game-container">
+  <h1>Number Guessing Game</h1>
+  <p>Guess a number between 1 and 100</p>
+  
+  <input type="number" id="guessInput" class="input-box" placeholder="Enter your guess" />
+  <button class="button" onclick="checkGuess()">Submit Guess</button>
+  
+  <p id="resultMessage" class="message"></p>
+  
+  <button class="button" onclick="resetGame()">Reset Game</button>
+</div>
 
-        function checkGuess() {
-            let userGuess = document.getElementById("userGuess").value;
-            let message = document.getElementById("message");
-            attempts++;
-            
-            if (userGuess == randomNumber) {
-                message.innerHTML = `🎉 Correct! You guessed it in ${attempts} attempts.`;
-            } else if (userGuess > randomNumber) {
-                message.innerHTML = "Too high! Try again.";
-            } else {
-                message.innerHTML = "Too low! Try again.";
-            }
-        }
-    </script>
+<script>
+  // Initialize the target number and attempt count
+  let targetNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
+
+  // Function to check the player's guess
+  function checkGuess() {
+    const userGuess = document.getElementById('guessInput').value;
+    const resultMessage = document.getElementById('resultMessage');
+    attempts++;
+
+    if (userGuess < targetNumber) {
+      resultMessage.textContent = 'Too low! Try again.';
+    } else if (userGuess > targetNumber) {
+      resultMessage.textContent = 'Too high! Try again.';
+    } else {
+      resultMessage.textContent = `Correct! You guessed the number in ${attempts} attempts.`;
+      document.querySelector('.button').disabled = true;  // Disable the Submit button after correct guess
+    }
+  }
+
+  // Function to reset the game
+  function resetGame() {
+    targetNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    document.getElementById('guessInput').value = '';
+    document.getElementById('resultMessage').textContent = '';
+    document.querySelector('.button').disabled = false; // Re-enable Submit button
+  }
+</script>
+
 </body>
 </html>
