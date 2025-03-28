@@ -6,6 +6,6 @@ resource "aws_instance" "devops-terra" {
   
 
   tags = {
-    Name = instance-terra
+    Name = "instance-terra"
 }
 }
