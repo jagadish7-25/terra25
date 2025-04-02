@@ -11,13 +11,21 @@ resource "aws_vpc" "expense-1" {
     }
   )
 }
-resource "aws_subnet" "expense-1" {
+resource "aws_subnet" "public" {
+  count = length(var.public_subnet_cidrs)
   vpc_id     = aws_vpc.expense-1.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.public_subnet_cidrs[count.index]
+  availability_zone = local.az_names[count.index]
+  tags = merge (
+    var.common_tags,
+    var.public_subnet_tags,
+    
+    {
+    Name = "${local.resource_name}-public-${local.az_names[count.index]}"
+    }
+  )
 
-  tags = {
-    Name = ""
-  }
+  
 }
 
 resource "aws_internet_gateway" "expense-1" {
