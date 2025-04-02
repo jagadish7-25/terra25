@@ -63,3 +63,6 @@ variable "db_subnet_tags" {
     default = {}
   
 }
+variable "nat_gateway_tags" {
+default = {}
+}
