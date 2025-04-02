@@ -61,6 +61,21 @@ resource "aws_subnet" "database" {
   
 }
 
+resource "aws_db_subnet_group" "database-grp" {
+  name = local.resource_name
+  subnet_ids = aws_subnet.database[*].id
+  tags = merge(
+    var.common_tags,
+    var.db_subnet_tags,
+    {
+      Name = local.resource_name
+    }
+
+  )
+  
+  
+}
+
 
 resource "aws_internet_gateway" "expense-1" {
   vpc_id = aws_vpc.expense-1.id
