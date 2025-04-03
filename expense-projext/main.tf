@@ -155,13 +155,13 @@ resource "aws_route" "public_route" {
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.expense-1.id
 }
-resource "aws_route" "private_route_table_tags" {
+resource "aws_route" "private_route" {
   route_table_id            = aws_route_table.private-r.id
   destination_cidr_block    = "0.0.0.0/0"
 
   gateway_id = aws_nat_gateway.expense-1.id
 }
-resource "aws_route" "private_route_table_tags" {
+resource "aws_route" "database_route" {
   route_table_id            = aws_route_table.database-r.id
   destination_cidr_block    = "0.0.0.0/0"
 
