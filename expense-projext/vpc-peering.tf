@@ -15,7 +15,7 @@ resource "aws_vpc_peering_connection" "expense-1" {
   
 }
 
-resource "aws_route" "database_route" {
+resource "aws_route" "public_perring" {
   count = var.is_peering_required ? 1 : 0
   route_table_id            = aws_route_table.database-r.id
   destination_cidr_block    = data.aws_vpc.default.cidr_block
