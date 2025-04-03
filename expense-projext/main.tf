@@ -110,3 +110,60 @@ resource "aws_nat_gateway" "expense-1" {
   depends_on = [aws_internet_gateway.expense-1]
 }
 
+
+resource "aws_route_table" "public-r" {
+  vpc_id = aws_vpc.expense-1.id
+
+  
+
+  tags = merge (
+    var.common_tags,
+    var.public_route_table_tags,
+    {
+    Name = "${local.resource_name}-public"
+    }
+  )
+}
+resource "aws_route_table" "private-r" {
+  vpc_id = aws_vpc.expense-1.id
+
+  
+
+  tags = merge (
+    var.common_tags,
+    var.private_route_table_tags,
+    {
+    Name = "${local.resource_name}-private"
+    }
+  )
+}
+resource "aws_route_table" "database-r" {
+  vpc_id = aws_vpc.expense-1.id
+
+  
+
+  tags = merge (
+    var.common_tags,
+    var.database_route_table_tags,
+    {
+    Name = "${local.resource_name}-database"
+    }
+  )
+}
+resource "aws_route" "public_route" {
+  route_table_id            = aws_route_table.public-r.id
+  destination_cidr_block    = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.expense-1.id
+}
+resource "aws_route" "private_route_table_tags" {
+  route_table_id            = aws_route_table.private-r.id
+  destination_cidr_block    = "0.0.0.0/0"
+
+  gateway_id = aws_nat_gateway.expense-1.id
+}
+resource "aws_route" "private_route_table_tags" {
+  route_table_id            = aws_route_table.database-r.id
+  destination_cidr_block    = "0.0.0.0/0"
+
+  gateway_id = aws_nat_gateway.expense-1.id
+}
