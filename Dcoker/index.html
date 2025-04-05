@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jag Loves Adel</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 1s;
+      animation: rotateScreen 10s linear infinite;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      animation: spinText 4s linear infinite;
+    }
+
+    @keyframes spinText {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateScreen {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Jag Loves Adel</h1>
+
+  <script>
+    const colors = ['#FF6B6B', '#6BCB77', '#4D96FF', '#FFC300', '#FF69B4', '#9D4EDD'];
+    let index = 0;
+
+    setInterval(() => {
+      document.body.style.backgroundColor = colors[index];
+      index = (index + 1) % colors.length;
+    }, 5000);
+  </script>
+</body>
+</html>
