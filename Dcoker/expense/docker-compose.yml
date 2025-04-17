@@ -1,0 +1,25 @@
+version: "3"
+networks:
+  expense:
+volumes:
+  mysql:
+services:  
+  mysql:
+    image: kadapajag7/mysql:v2
+    container_name: mysql
+    volumes:
+      - mysql:/var/lib/mysql
+  backend:
+    image: kadapajag7/backend:v2
+    container_name: backend
+    command: sh -c "sleep 10 && node /opt/server/index.js"
+    depends_on:
+      - mysql
+  frontend:
+    image: kadapajag7/frontend:v2
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    
